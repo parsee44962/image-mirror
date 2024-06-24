@@ -86,7 +86,12 @@ jobs:
           TARGET_REGISTRY: ${{ vars.TARGET_REGISTRY }}
         #处理body中的空格和tab和换行，并在结尾添加: ， 写入images.yml 文件
         run: | 
-          echo "${{ github.event.issue.body }}" > images-init.yml 
+          echo "${{ github.event.issue.body }}" > images-init.yml
+          echo $TARGET_REGISTRY_PASSWORD
+          echo $TARGET_REGISTRY_USER
+          echo $TARGET_NAMESPACE
+          echo $TARGET_REGISTRY
+          cat auth.yml
           dos2unix              images-init.yml
           sed -i 's/^[ \t]*//g' images-init.yml
           sed -i 's/[ \t]*$//g' images-init.yml
